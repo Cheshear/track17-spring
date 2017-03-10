@@ -1,6 +1,11 @@
 package track.lessons.lesson1;
 
+
 import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Задание 1: Реализовать два метода
@@ -30,8 +35,35 @@ public class CountWords {
      * @param file - файл с данными
      * @return - целое число - сумма всех чисел из файла
      */
+
     public long countNumbers(File file) throws Exception {
-        return 0;
+      //  String path = "C:\\Users\\V\\track17-spring\\words.txt";
+        List<String> lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8  );
+        Iterator iterator = lines.iterator();
+        int sum = 0;
+        while (iterator.hasNext()) {
+            String element = (String) iterator.next();
+            boolean isElementInteger = isInteger(element);
+            if (isElementInteger) {
+                int num;
+                num = Integer.parseInt(element);
+                sum = sum + num;
+            }
+        }
+        return sum;
+    }
+
+
+    public boolean isInteger(String str) {
+        int size = str.length();
+
+        for (int i = 0; i < size; i++) {
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
+        }
+
+        return size > 0;
     }
 
 
@@ -43,7 +75,27 @@ public class CountWords {
      * @return - результирующая строка
      */
     public String concatWords(File file) throws Exception {
-        return null;
+       // String path = "C:\\Users\\V\\track17-spring\\words.txt";
+        List<String> lines = Files.readAllLines(file.toPath(), StandardCharsets.UTF_8);
+        Iterator iterator = lines.iterator();
+        StringBuilder result = new StringBuilder("");
+        while (iterator.hasNext()) {
+
+            String element = (String) iterator.next();
+            if (element.equals("")) {
+                continue;
+            }
+
+            boolean isElementInteger = isInteger(element);
+
+            if (!isElementInteger) {
+                result.append(element);
+                if (iterator.hasNext()) {
+                    result.append(" ");
+                }
+            }
+        }
+        return result.toString();
     }
 
 }
