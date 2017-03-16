@@ -1,10 +1,11 @@
 package track.lessons.lesson1;
 
-import java.io.File;
-
+import org.junit.Ignore;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.io.File;
 
 /**
  *
@@ -20,12 +21,14 @@ public class CountWordsTest {
 
 
     @Test
+    @Ignore
     public void countNumbers() throws Exception {
         CountWords countWords = new CountWords();
         Assert.assertEquals(42, countWords.countNumbers(file));
     }
 
     @Test
+    @Ignore
     public void concatWords() throws Exception {
         CountWords countWords = new CountWords();
         Assert.assertEquals("hello world !", countWords.concatWords(file));
