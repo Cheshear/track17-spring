@@ -17,8 +17,6 @@ public class MyArrayList extends List {
 
     public MyArrayList() {
         this(10);
-        elementData = new int[10];
-        size = 0;
     }
 
     public MyArrayList(int capacity) {
@@ -27,7 +25,6 @@ public class MyArrayList extends List {
             throw new IllegalArgumentException("Illegal Capacity: " + capacity);
         }
         this.elementData = new int[capacity];
-        size = 0;
     }
 
     private void grow(int minCapacity) {
